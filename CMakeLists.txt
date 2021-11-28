@@ -10,6 +10,7 @@ project(ex1)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  message_generation #for the service
 )
 
 ## System dependencies are found with CMake's conventions
@@ -53,11 +54,11 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
+ add_service_files(
+   FILES
+   square.srv # for the service
 #   Service2.srv
-# )
+ )
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -67,10 +68,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+generate_messages( #for the service
+   DEPENDENCIES
+   std_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -134,6 +135,9 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(subscriber_node src/sub_node.cpp)
 add_executable(publisher_node src/pub_node.cpp)
+#for the service 
+add_executable(client_square_node src/client_square_node.cpp)
+add_executable(server_square_node src/server_square_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -145,15 +149,25 @@ add_executable(publisher_node src/pub_node.cpp)
 ## same as for the library above
 add_dependencies(subscriber_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(publisher_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+#for the service
+add_dependencies(client_square_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(server_square_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(subscriber_node
-   ${catkin_LIBRARIES}
- )
- target_link_libraries(publisher_node
- ${catkin_LIBRARIES}
+target_link_libraries(subscriber_node
+  ${catkin_LIBRARIES}
 )
-
+target_link_libraries(publisher_node
+${catkin_LIBRARIES}
+)
+#for the service
+target_link_libraries(client_square_node
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(server_square_node
+  ${catkin_LIBRARIES}
+)
 #############
 ## Install ##
 #############
