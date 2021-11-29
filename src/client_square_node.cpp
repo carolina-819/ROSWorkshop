@@ -17,10 +17,10 @@ int main(int argc, char **argv){
     string input;
     while(getline(cin, input)){
        
-        srv.request.num = stoi(input);
+        srv.request.num_in = stoi(input);
         if (client.call(srv))
         {
-            cout << "squared: " << (long int)srv.response.num << "\n";
+            cout << "squared: " << (long int)srv.response.num_out << "\n";
         }
         else
         {

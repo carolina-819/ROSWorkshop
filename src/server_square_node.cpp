@@ -9,7 +9,7 @@ ros::Publisher pub;
 bool square(workshop_example::square::Request  &req,
             workshop_example::square::Response &res)
     {
-      res.num = req.num * req.num;
+      res.num_out = req.num_in * req.num_in;
       cout << "sending back response! " << endl;
      return true;
    }
