@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>ex1</name>
+  <name>workshop_example</name>
   <version>0.0.0</version>
   <description>ROS Workshop package</description>
 

@@ -2,12 +2,12 @@
 #include <std_msgs/String.h>
 #include <string>
 #include <iostream>
-#include "ex1/square.h"
+#include "workshop_example/square.h"
 using namespace std;
 ros::Publisher pub;
 
-bool square(ex1::square::Request  &req,
-            ex1::square::Response &res)
+bool square(workshop_example::square::Request  &req,
+            workshop_example::square::Response &res)
     {
       res.num = req.num * req.num;
       cout << "sending back response! " << endl;
